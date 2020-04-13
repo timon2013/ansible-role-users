@@ -22,8 +22,6 @@
   shell: cat /etc/passwd | cut -f1 -d":"
   register: sshkeys_users
   changed_when: false
-#  args:
-#    executable: /bin/bash
   tags:
   - skip_ansible_lint
 
