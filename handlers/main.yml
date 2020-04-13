@@ -1,0 +1,13 @@
+---
+# handlers file for ansible-role-users
+
+- name: Verifying sshd configurations
+  shell: sshd -t
+  register: verify_sshd
+
+- name: Reload sshd configurations
+  service:
+   name: sshd
+   state: reloaded
+  when: verify_sshd.rc == 0
+  ignore_errors: yes

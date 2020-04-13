@@ -1,0 +1,22 @@
+---
+- name: Set the key from the key_var variable
+  set_fact: 
+    public_key: "{{ item.key_var }}"
+  when: item.key_var is defined and (item.key is defined)
+
+- name: Set the key from the key_file file
+  set_fact:
+    public_key: "{{ lookup('file', '{{item.key_file}}') }}"
+  when: (item.key_file is defined) and (item.key_var is not defined) and (item.key is defined)
+
+- name: Set the key from the default file
+  set_fact:
+    public_key: "{{ lookup('file', 'files/{{ item.user }}.pub') }}"
+  when: (item.key_var is not defined) and (item.key_file is not defined) and (item.key is defined)
+
+- name: Add SSH authorized key for users with key value
+  authorized_key:
+    user: "{{ item.user }}"
+    state: "{{ item.state }}"
+    key: "{{ public_key }}"
+  when: (item.state == "present") and (sshkeys_users is defined) and (item.user in sshkeys_users.stdout_lines) and (item.key is defined)

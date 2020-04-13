@@ -1,0 +1,33 @@
+---
+- name: ansible-role-users
+  hosts: all
+  roles:
+    - role: ansible-role-users
+  vars:
+    - disable_root_login: true
+    #https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-generate-encrypted-passwords-for-the-user-module
+    #Default password: mypassword
+    - pass_user3: "$6$mysecretsalt$qJbapG68nyRab3gxvKWPUcs2g3t0oMHSHMnSKecYNpSi3CuZm.GbBqXO8BE6EI6P1JUefhA0qvD7b5LSh./PU1"
+    - groups_items:
+      - name: group3
+        state: present
+    - users_items:
+      #User with added ssh key from variable and added sudo without password.
+      - user: user1
+        state: present
+        key: true
+        shell: /bin/bash
+        sudo: true
+        sudo_without_password: true
+        key_var: "ssh-rsa AAAAB3NzaC1yc__PUBLIC_KEY__FROM_VARIABLE__4Aq+G8R52AiEOjKlkVqx0hddkGs=="
+      #User with key from file.
+      - user: user2
+        state: present
+        key: true
+        key_file: "tests/user2.pub"
+      #User with password and sudo.
+      - user: user3
+        state: present
+        groups: ['group3']
+        password: "{{ pass_user3|default(omit) }}"
+        sudo: true
