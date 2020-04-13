@@ -6,7 +6,7 @@
 
 - name: Set the key from the key_file file
   set_fact:
-    public_key: "{{ lookup('file', '{{item.key_file}}') }}"
+    public_key: "{{ lookup('file', '{{ item.key_file }}') }}"
   when: (item.key_file is defined) and (item.key_var is not defined) and (item.key is defined)
 
 - name: Set the key from the default file
