@@ -1,14 +1,14 @@
 ---
 # tasks file for ansible-role-users
 - name: Create groups from list
-  group: 
+  group:
     name: "{{ item.name }}"
     state: "{{ item.state | default('present') }}"
   loop: "{{ groups_items }}"
   when: groups_items is defined
 
 - name: Create users from list
-  user: 
+  user:
     name: "{{ item.user }}"
     shell: "{{ item.shell | default('/bin/bash') }}"
     state: "{{ item.state | default('present') }}"
@@ -21,7 +21,7 @@
 - name: Creating a list of users
   shell: cat /etc/passwd | cut -f1 -d":"
   register: sshkeys_users
-  changed_when: False
+  changed_when: false
 
 - include: key.yml
   loop: "{{ users_items }}"
@@ -41,7 +41,7 @@
     - Reload sshd configurations
 
 - name: Add user to group wheel
-  user: 
+  user:
     name: "{{ item.user }}"
     groups: ['wheel']
     append: yes

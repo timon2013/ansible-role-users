@@ -10,4 +10,4 @@
    name: sshd
    state: reloaded
   when: verify_sshd.rc == 0
-  ignore_errors: yes
+  ignore_errors: true

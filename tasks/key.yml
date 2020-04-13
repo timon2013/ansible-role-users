@@ -1,6 +1,6 @@
 ---
 - name: Set the key from the key_var variable
-  set_fact: 
+  set_fact:
     public_key: "{{ item.key_var }}"
   when: item.key_var is defined and (item.key is defined)
 
