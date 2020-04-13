@@ -12,7 +12,7 @@
         - name: group3
           state: present
     - users_items:
-      # User with added ssh key from variable and added sudo without password.
+        # User with added ssh key from variable and added sudo without password.
         - user: user1
           state: present
           key: true
@@ -20,12 +20,12 @@
           sudo: true
           sudo_without_password: true
           key_var: "ssh-rsa AAAAB3NzaC1yc__PUBLIC_KEY__FROM_VARIABLE__4Aq+G8R52AiEOjKlkVqx0hddkGs=="
-      # User with key from file.
+        # User with key from file.
         - user: user2
           state: present
           key: true
           key_file: "tests/user2.pub"
-      # User with password and sudo.
+        # User with password and sudo.
         - user: user3
           state: present
           groups: ['group3']
