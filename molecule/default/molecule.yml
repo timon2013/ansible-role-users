@@ -9,7 +9,7 @@ lint:
     config-file: molecule/default/yaml-lint.yml
 platforms:
   - name: centos7
-    image: "bdellegrazie/centos-systemd:7"
+    image: "timon2013/centos-systemd-ssh"
     pull: true
     pre_build_image: true
     command: "/usr/sbin/init"
