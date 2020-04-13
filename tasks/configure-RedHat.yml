@@ -23,7 +23,7 @@
   register: sshkeys_users
   changed_when: false
   tags:
-  - skip_ansible_lint
+    - skip_ansible_lint
 
 - include: key.yml
   loop: "{{ users_items }}"
