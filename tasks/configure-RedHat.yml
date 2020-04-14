@@ -15,6 +15,7 @@
     groups: "{{ item.groups | default('') }}"
     password: "{{ item.password|default(omit) }}"
     update_password: always
+    append: true
   loop: "{{ users_items }}"
   when: item.state == "present"
 
@@ -36,6 +37,7 @@
     line: '{{ item.user }} ALL=(ALL) NOPASSWD:ALL'
     state: present
     backup: true
+    validate: /usr/sbin/visudo -cf %s
   loop: "{{ users_items }}"
   when: (item.sudo_without_password is defined and item.sudo_without_password) and (item.sudo is defined and item.sudo)
   notify:
@@ -56,8 +58,11 @@
 - name: Disable root login
   lineinfile:
     path: /etc/ssh/sshd_config
-    regexp: '^.*PermitRootLogin yes$'
+    regexp: '^PermitRootLogin yes.*'
     line: 'PermitRootLogin no'
+    state: present
+    backrefs: true
+    validate: sshd -t
   when: disable_root_login|bool
   notify:
     - Verifying sshd configurations

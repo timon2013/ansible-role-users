@@ -26,6 +26,7 @@ Role Variables
 | password | not defined | String | The encrypted password https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-generate-encrypted-passwords-for-the-user-module
 | sudo | not defined | Bool | add to sudo. You can set true or false |
 | sudo_without_password | not defined | Bool | Add to sudo without password confirmation. You can set true or false |
+| groups | '' | List |  add the user to the groups. All existing groups will be retained. |
 | `groups_items` |  | Array | You can use |
 | name | not defined | String | Required. Group name. |
 | state | present | string | You can set absent or present. |
