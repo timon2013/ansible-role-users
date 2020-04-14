@@ -4,6 +4,7 @@ dependency:
 driver:
   name: docker
 lint: |
+  set -e
   yamllint -c molecule/default/yaml-lint.yml .
   ansible-lint
   flake8
@@ -24,7 +25,7 @@ platforms:
 provisioner:
   name: ansible
   playbooks:
-    converge: playbook.yml
+    converge: converge.yml
 scenario:
   name: default
 verifier:
