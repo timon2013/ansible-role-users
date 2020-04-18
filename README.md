@@ -3,6 +3,15 @@ Users
 
 The role can create users on your server. You can create users with sudo, use password, use key from file or variable. You can create groups for your user and assign specific user to specific group.
 
+Build
+-----------
+
+Master branch:
+[![Build Status](https://travis-ci.org/timon2013/ansible-role-users.svg?branch=master)](https://travis-ci.org/timon2013/ansible-role-users)
+
+Dev Branch:
+[![Build Status](https://travis-ci.org/timon2013/ansible-role-users.svg?branch=dev)](https://travis-ci.org/timon2013/ansible-role-users)
+
 Requirements
 ------------
 
@@ -50,9 +59,3 @@ Author Information
 ------------------
 
 timon2013
-
-Master branch:
-[![Build Status](https://travis-ci.org/timon2013/ansible-role-users.svg?branch=master)](https://travis-ci.org/timon2013/ansible-role-users)
-
-Dev Branch:
-[![Build Status](https://travis-ci.org/timon2013/ansible-role-users.svg?branch=dev)](https://travis-ci.org/timon2013/ansible-role-users)

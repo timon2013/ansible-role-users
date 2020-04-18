@@ -21,6 +21,7 @@ galaxy_info:
     - server
     - key
     - security
+    - sudo
 
 
 dependencies: []
